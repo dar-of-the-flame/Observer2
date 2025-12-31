@@ -1,0 +1,263 @@
+/* Reset и базовые стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+    --primary-dark: #0a0a1a;
+    --primary-purple: #6b46c1;
+    --accent-purple: #9f7aea;
+    --light-purple: #d6bcfa;
+    --text-primary: #f7fafc;
+    --text-secondary: #cbd5e0;
+    --danger: #fc8181;
+    --success: #68d391;
+    --warning: #f6ad55;
+    
+    --gradient-1: linear-gradient(135deg, #0a0a1a 0%, #1a202c 50%, #2d3748 100%);
+    --gradient-2: linear-gradient(45deg, #4c1d95 0%, #6b46c1 30%, #9f7aea 70%, #d6bcfa 100%);
+    
+    --shadow-deep: 0 10px 30px rgba(0, 0, 0, 0.5);
+    --shadow-light: 0 5px 15px rgba(159, 122, 234, 0.2);
+    
+    --border-radius: 12px;
+    --border-radius-sm: 8px;
+    
+    --font-title: 'UnifrakturMaguntia', cursive;
+    --font-body: 'Roboto Mono', monospace;
+}
+
+body {
+    font-family: var(--font-body);
+    background: var(--primary-dark);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Контейнеры */
+.menu-container {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 5% 10%;
+    z-index: 1;
+}
+
+/* Стили для скроллбара */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent-purple);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--light-purple);
+}
+
+/* Анимации */
+@keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Утилиты */
+.hidden {
+    display: none !important;
+}
+
+.loading {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .menu-container {
+        padding: 10% 5%;
+    }
+}
+
+@media (max-height: 700px) {
+    .menu-footer {
+        display: none;
+    }
+}
+
+
+/* Адаптация для мобильных устройств */
+@media (max-width: 480px) {
+    .menu-container {
+        padding: 10% 5%;
+    }
+    
+    .game-title {
+        font-size: 2.5rem;
+    }
+    
+    .menu-nav {
+        max-width: 100%;
+    }
+    
+    .menu-btn {
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+    }
+    
+    .saves-preview {
+        max-width: 100%;
+    }
+}
+
+/* Портретная ориентация (книжный формат) */
+@media (orientation: portrait) and (max-height: 800px) {
+    .menu-footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(10, 10, 26, 0.9);
+        padding: 1rem;
+        z-index: 10;
+    }
+    
+    .menu-main {
+        margin-bottom: 80px;
+    }
+}
+
+/* Ландшафтная ориентация */
+@media (orientation: landscape) and (max-height: 500px) {
+    .menu-header {
+        padding-top: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .game-title {
+        font-size: 2rem;
+    }
+    
+    .menu-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .menu-btn {
+        min-width: 200px;
+    }
+}
+
+/* Дополнения к основным стилям */
+
+/* Для портретной ориентации телефона */
+@media (orientation: portrait) {
+    body {
+        overflow: hidden;
+    }
+    
+    .menu-container {
+        padding: 5% 5%;
+    }
+    
+    .game-title {
+        font-size: 2.5rem;
+    }
+    
+    .menu-nav {
+        max-width: 100%;
+    }
+    
+    .menu-btn {
+        padding: 1rem 1.2rem;
+        font-size: 1rem;
+    }
+    
+    .modal.wide {
+        width: 95%;
+        min-width: 95%;
+        max-height: 85vh;
+    }
+    
+    .endings-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+    }
+    
+    .ending-card {
+        min-height: 100px;
+        padding: 0.8rem;
+    }
+    
+    .ending-icon {
+        font-size: 1.5rem;
+    }
+    
+    .ending-title {
+        font-size: 0.8rem;
+    }
+}
+
+/* Для очень маленьких экранов */
+@media (max-width: 320px) {
+    .game-title {
+        font-size: 2rem;
+    }
+    
+    .title-subtitle {
+        font-size: 0.8rem;
+    }
+    
+    .menu-btn {
+        padding: 0.8rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .btn-icon {
+        font-size: 1.1rem;
+    }
+}
+
+/* Предотвращение выделения текста на мобильных */
+* {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* Разрешаем выделение текста в текстовом контенте */
+.text-content {
+    -webkit-user-select: text;
+    user-select: text;
+}
